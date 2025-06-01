@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Aplikasi Jadwal Shalat</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      background: linear-gradient(to bottom right, #f0fdf4, #e0f7fa);
+    }
+
+    /* Header */
+    header {
+      background: linear-gradient(10deg, #007B5E, #003f2e);
+      padding: 10px 20px;
+      position: sticky;
+      top: 0;
+      z-index: 999;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .header-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+
+    .header-top .logo {
+      height: 50px;
+      border-radius: 10px;
+    }
+
+    .header-top .title-group {
+      flex: 1;
+      text-align: center;
+    }
+
+    .header-top h1 {
+      margin: 0;
+      font-size: 1.8rem;
+      color: rgb(255, 255, 255);
+    }
+
+    .header-top h2 {
+      font-size: 0.85rem;
+      margin: 2px 0;
+      color: yellow;
+    }
+
+    .header-top h3 {
+      font-size: 0.85rem;
+      margin: 2px 0;
+      font-style: italic;
+      color: rgb(255, 255, 255);
+    }
+
+    .navbar {
+      margin-top: 10px;
+    }
+
+    .navbar ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .navbar li {
+      position: relative;
+      margin: 0 10px;
+    }
+
+    .navbar a {
+      color: white;
+      text-decoration: none;
+      padding: 10px;
+      display: block;
+      font-weight: bold;
+    }
+
+    .navbar a:hover {
+      color: #f2f2f2;
+      text-shadow: 0 0 5px #fff;
+      background-color:#017a5a;
+    }
+
+    /* Dropdown */
+    .navbar .dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #006a4e;
+      min-width: 180px;
+      top: 100%;
+      left: 0;
+      z-index: 1;
+      border-radius: 5px;
+      overflow: hidden;
+    }
+
+    .dropdown-content a {
+      padding: 10px;
+      color: white;
+      display: block;
+    }
+
+    .dropdown-content a:hover {
+      background-color: #00563f;
+    }
+
+    /* Hamburger */
+    .hamburger {
+      display: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    @media (max-width: 768px) {
+      .navbar ul {
+        display: none;
+        flex-direction: column;
+        background-color: linear-gradient(80deg, #003f2e, #007B5E);
+        width: 100%;
+        padding: 10px 0;
+        margin-top: 10px;
+        border-radius: 5px;
+      }
+
+      .navbar ul.show {
+        display: flex;
+      }
+
+      .navbar li {
+        text-align: center;
+        margin: 5px 0;
+      }
+
+      .hamburger {
+        display: block;
+        color: white;
+        margin-left: auto;
+      }
+
+      .dropdown-content {
+        position: static;
+        background-color: #007B5E;
+      }
+    }
+  
+  main {
+    max-width: 1000px;
+    margin: 20px auto;
+    padding: 15px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  }
+
+  h4 {
+    text-align: center;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    margin-bottom: -1px;
+    font-size: 1.8rem;
+    color: #007B5E;
+  }
+
+  h5 {
+    text-align: left;
+    font-size: 14px;
+    margin-top: 20px;
+    margin: 10px 0 20px;
+    color: #3d3d3d;
+  }
+
+  h6 {
+    text-align: center;
+    font-size: 20px;
+    margin: 10px 0;
+    color: #000000;
+  }
+
+  .form-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: space-between;
+  }
+
+  .form-group {
+    flex: 1 1 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  @media (min-width: 600px) {
+    .form-group {
+      flex: 1 1 30%;
+    }
+  }
+
+  label {
+    font-weight: 600;
+    margin-bottom: 5px;
+  }
+
+  input {
+    padding: 10px;
+    border: 2px solid #ddd;
+    border-radius: 6px;
+    font-size: 1rem;
+    transition: border 0.3s ease;
+  }
+
+  input:focus {
+    border-color: #007B5E;
+    outline: none;
+  }
+
+  .button-row {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 20px;
+  }
+
+  @media (min-width: 500px) {
+    .button-row {
+      flex-direction: row;
+      justify-content: center;
+    }
+  }
+
+  button {
+    padding: 14px 28px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 8px;
+    background: linear-gradient(90deg, #007B5E, #005f46);
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+    transition: transform 0.2s ease, background 0.3s ease;
+  }
+
+  button:hover {
+    transform: scale(1.05);
+    background: linear-gradient(90deg, #005f46, #007B5E);
+  }
+
+  .results {
+    margin-top: 30px;
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 10px;
+    border-left: 4px solid #007B5E;
+    font-size: 1rem;
+    overflow-x: auto;
+  }
+
+  .results p {
+    font-family: monospace;
+    margin: 10px 0;
+  }
+
+  footer {
+    text-align: center;
+    padding: 20px;
+    background: #333;
+    color: white;
+    margin-top: 40px;
+    font-size: 0.9rem;
+  }
+</style>
+</head>
+<body>
+
+
+<header>
+  <div class="header-top">
+    <img src="Logo Pondok Gurunda 700px (2).png" alt="Logo" class="logo" />
+    <div class="title-group">
+      <h1>APLIKASI FALAKIYYAH</h1>
+      <h2>PONDOK PESANTREN NUR MUHAMMAD BANJARAN</h2>
+      <h3>Al-Hasib : Kiagus Akbar Saman, M.Pd</h3>
+    </div>
+    <div class="hamburger" onclick="toggleMenu()">&#9776;</div>
+  </div>
+  <nav class="navbar">
+    <ul id="navMenu">
+      <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+      <li><a href="webnurmuhammad.html"><i class="fas fa-globe"></i> Website Ponpes Nur Muhammad</a></li>
+      <li><a href="jadwalwaktushalat.html"><i class="fas fa-mosque"></i>  Aplikasi Jadwal Waktu Shalat</a></li>
+      <li><a href="#"><i class="fas fa-kaaba"></i>  Aplikasi Azimat dan Bayangan Kiblat</a></li>
+      <li><a href="#"><i class="fas fa-moon"></i>  Hisab Awal Bulan Tsimarul Murid</a></li>
+      <li><a href="QnA.html"><i class="fas fa-question-circle"></i> QnA Bersama Yai Saman</a></li>
+      <li><a href="kontak.html"> <i class="fas fa-envelope"></i> Kontak Kami</a></li>
+      <li><a href="infaqyuk.html" style="color: yellow;"><i class="fas fa-donate"></i> Infaq Yuk</a></li>
+    </ul>
+  </nav>
+</header>
+
+<script>
+  function toggleMenu() {
+    document.getElementById("navMenu").classList.toggle("show");
+  }
+</script>
+
+
+
+  <main>
+    <h4>JADWAL WAKTU SHALAT</h4>
+    <h6>إنّ ٱلصّلوة كانت على ٱلمؤمنين كتبا مّوقوتا</h6>
+    <h5>Input Data Tempat Yang Ingin Anda Cari dan Ketahui Jadwal Waktu Shalatnya</h5>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label for="tanggal">Tanggal</label>
+        <input type="datetime-local" id="tanggal">
+      </div>
+      <div class="form-group">
+        <label for="namakota">Lokasi</label>
+        <input type="text" id="namakota" value="Cimahi">
+      </div>
+      <div class="form-group">
+        <label for="lok1">Latitude</label>
+        <input type="number" id="lok1" value="-6.54" step="any">
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label for="lok2">Longitude</label>
+        <input type="number" id="lok2" value="107.33" step="any">
+      </div>
+      <div class="form-group">
+        <label for="lok3">Altitude (m)</label>
+        <input type="number" id="lok3" value="717">
+      </div>
+      <div class="form-group">
+        <label for="lok4">Time Zone</label>
+        <input type="number" id="lok4" value="7">
+      </div>
+    </div>
+
+    <div class="button-row">
+      <button onclick="BtHitung()">LIHAT</button>
+      <button onclick="BtHapus()">HAPUS</button>
+    </div>
+
+    <div class="results">
+      <p id="hasil0"></p>
+      <p id="hasil1"></p>
+      <p id="hasil2"></p>
+    </div>
+  </main>
+
+  <footer>
+    &copy; 2025 Aplikasi Jadwal Shalat - Hendro Juniawan
+  </footer>
+
+  <!-- SCRIPT -->
+  <script>
+    // Taruh di sini semua fungsi JavaScript Anda: BtHitung, BtHapus, dan perhitungan jadwal
+    // (sudah Anda lampirkan di versi sebelumnya)
+function BtHapus(){
+    hasil0.innerHTML="Data terhapus";
+    hasil1.innerHTML="<i>"+"Data terhapus";
+}
+function BtHitung(){
+    var tbt,mm,TanggalM,BulanM,NamaBulanM,TahunM,jd1,kota,lt,bt,tt,tz;
+    kota=document.getElementById("namakota").value;
+    lt=document.getElementById("lok1").value;
+    bt=document.getElementById("lok2").value;
+    tt=document.getElementById("lok3").value;
+    tz=document.getElementById("lok4").value;
+    lt=lt*1;
+    bt=bt*1;
+    tt=tt*1;
+    tz=tz*1;
+    NamaBulanM=["Desember","Januari","Februari","Maret","April","Mei","Juni","Juli","Agustus","September","Oktober","Nopember","Desember"];
+    tbt=new Date();
+    TanggalM=tbt.getDate();
+    mm=tbt.getMonth();BulanM=mm+1;
+    TahunM=tbt.getFullYear();
+    jd1=KMJD(TanggalM,BulanM,TahunM,12,tz);
+    var HP,hr,ps,NamaHari,NamaPasaran,Hari,Pasaran;
+    HP=INT(jd1+17);
+    hr=MOD(HP,7);
+    ps=MOD(HP,5);
+    NamaHari=["Sabtu","Ahad","Senin","Selasa","Rabu","Kamis","Jum'at"];
+    NamaPasaran=["Kliwon","Legi","Pahing","Pon","Wage"];
+    Hari=NamaHari[hr];
+    Pasaran=NamaPasaran[ps];
+    var BA1,BA2,BA3,BA4,BA5,BA6,BA7,BA8,BA9,BA10,BA11,dek,e;
+    BA1=(jd1-2451545)/36525;
+    BA2=FRAC(280.46645+36000.76983*BA1,360);
+    BA3=FRAC(357.52910+35999.05030*BA1,360);
+    BA4=FRAC(125.04-1934.136*BA1,360);
+    BA5=(17.264/3600)*SIN(BA4)+(0.206/3600)*SIN(2*BA4);
+    BA6=(-1.264/3600)*SIN(2*BA2);
+    BA7=(9.23/3600)*COS(BA4)-(0.090/3600)*COS(2*BA4);
+    BA8=(0.548/3600)*COS(2*BA2);
+    BA9=23.43929111+BA7+BA8-(46.8150/3600)*BA1;
+    BA10=(6898.06/3600)*SIN(BA3)+(72.095/3600)*SIN(2*BA3)+(0.966/3600)*SIN(3*BA3);
+    BA11=BA2+BA10+BA5+BA6-(20.47/3600);
+    dek=ASIN(SIN(BA11)*SIN(BA9));
+    e=(-1.915*SIN(BA3)+-0.02*SIN(2*BA3)+2.466*SIN(2*BA11)+-0.053*SIN(4*BA11))/15;
+    var SH1,DZ,hA,F,G,ASH,Sd,Dip,hMag,Maghrib,Isya,Imsak,Shubuh,Terbit,Dluha,iht1,iht2,iht3,Lmalam,Nmalam,Smalam;
+    DZ=12-e+((tz*15)-bt)/15;
+    SH1=Math.abs(lt-dek);
+    hA=ATAN(1/(TAN(SH1)+1));
+    F=-TAN(lt)*TAN(dek);
+    G=COS(lt)*COS(dek);
+    ASH=DZ+ACOS(F+SIN(hA)/G)/15;
+    Sd=0.267/(1-0.017*COS(BA3));
+    Dip=(1.76/60)*Math.sqrt(tt);
+    hMag=0-(Sd+(34.5/60)+Dip)-0.0024;
+    Maghrib=DZ+ACOS(F+SIN(hMag)/G)/15;
+    Isya=DZ+ACOS(F+SIN(-18)/G)/15;
+    iht1=10/60;
+    iht2=3.5/60;
+    iht3=2/60;
+    Imsak=DZ-ACOS(F+SIN(-20)/G)/15-iht1;
+    Shubuh=DZ-ACOS(F+SIN(-20)/G)/15;
+    Terbit=DZ-ACOS(F+SIN(hMag)/G)/15;
+    Dluha=DZ-ACOS(F+SIN(4.5)/G)/15;
+    Lmalam=MOD(Shubuh-Maghrib,24);
+    Nmalam=MOD(Maghrib+(Lmalam/2),24);
+    Smalam=MOD(Maghrib+((Lmalam/3)*2),24);
+    var ltkaba,bjkaba,A,h,Az,AQ,AQ1;
+    ltkaba=21.42191389;
+    bjkaba=39.82951945;
+    A=MOD(360-bjkaba+bt,360);
+    h=ASIN(SIN(lt)*SIN(ltkaba)+COS(lt)*COS(ltkaba)*COS(A));
+    Az=ACOS((SIN(ltkaba)-SIN(lt)*SIN(h))/COS(lt)/COS(h));
+    AQ=360-Az;
+    if(A>180){AQ1=Az;}
+    else {AQ1=AQ;}
+    var BQ11,BQ12,BQ13,BQ14,BQ15,BQ16,BQ17,BQ1,BQ2;
+    BQ11=90-lt;
+    BQ12=ATAN(1/(COS(BQ11)*TAN(AQ1)));
+    BQ13=ACOS(TAN(dek)*TAN(BQ11)*COS(BQ12));
+    BQ14=0-(BQ12-BQ13)/15+12;
+    BQ15=MOD(BQ14-e+((tz*15)-bt)/15,24);
+    BQ16=0-(BQ12+BQ13)/15+12;
+    BQ17=MOD(BQ16-e+((tz*15)-bt)/15,24);
+    if (BQ15<BQ17) {BQ1=BQ15;BQ2=BQ17;} else {BQ1=BQ17;BQ2=BQ15;}
+
+    hasil0.innerHTML="Jadwal Waktu Shalat Wilayah "+kota+" dan Sekitarnya"+"<br>.....<br>"
+    +"Hari = "+Hari+" "+Pasaran+", "+TanggalM+" "+NamaBulanM[BulanM]+" "+TahunM+" M "+"<br>"
+    + "1/2 malam ____= "+Hms2(Nmalam)+"<br>"
+    + "1/3 malam ____= "+Hms2(Smalam)+"<br>"
+    + "Imsak ________= "+Hms2(Imsak+iht3)+"<br>"
+    + "Shubuh _______= "+Hms2(Shubuh+iht3)+"<br>"
+    + "Thulu' _______= "+Hms2(Terbit-iht3)+"<br>"
+    + "Dluha ________= "+Hms2(Dluha+iht3)+"<br>"
+    + "Dzuhur _______= "+Hms2(DZ+iht2)+"<br>"
+    + "Ashar ________= "+Hms2(ASH+iht3)+"<br>"
+    + "Maghrib ______= "+Hms2(Maghrib+iht3)+"<br>"
+    + "Isya _________= "+Hms2(Isya+iht3)+"<br>"
+    + "Jam Kiblat 1 _= "+Hms2(BQ1)+"<br>"
+    + "Jam Kiblat 2 _= "+Hms2(BQ2)+"<br>"
+    + "Azimut Kiblat = "+Dms2(AQ1)+"<br>";
+    
+    hasil1.innerHTML="JD dan Pergerakan Matahari"+"<br>"
+    + "Julian Day ___= "+jd1+"<br>"
+    + "Deklinasi Ma _= "+Dms2(dek)+"<br>"
+    + "Perata Waktu _= "+Dms2(e)+"<br>"
+    + "Semi Diameter = "+Dms2(Sd)+"<br>.....<br>";
+  
+    hasil2.innerHTML="Ditetapkan oleh Tim Ahli Falakiyyah PP. Nur Muhammad Banjaran"
+}
+function KMJD(tgl,bln,thn,jam,tz){
+    var ab1,ab2,ab3,ab4,ab5;
+    ab1=tgl+((jam-tz)/24);
+    if (bln<3){ab2=bln+12;ab3=thn-1;} else {ab2=bln;ab3=thn;}
+    if (thn+bln/100+tgl/10000>=1582.1015){ab4=2-INT(thn/100)+INT(INT(thn/100)/4);} else {ab4=0;}
+    ab5=INT(365.25*(ab3+4716))+INT(30.6001*(ab2+1))+ab1+ab4-1524.5;
+    return ab5;
+}
+function INT(data){
+    return Math.floor(data);
+}
+function MOD (Data,Data1){
+    return Data-Data1*Math.floor(Data/Data1);
+}
+function FRAC (Data,Data1){
+    return Data-Math.floor(Data/Data1)*Data1;
+}
+function ROUND (Data,Data1){
+    var A,B,C,D,E,h1;
+    h1=Math.pow(10,Data1);
+    A=INT(Data);
+    B=(Data-A)*h1;
+    C=INT(B);
+    D=B-C;
+    if(D>0.5){E=1;}
+    else {E=0;}
+    return A+(C+E)/h1;
+}
+function Rad (Deg){
+    return Deg*(Math.atan(1)/45);
+}
+function Deg (Rad){
+    return Rad*(45/Math.atan(1));
+}
+function TAN (Data){
+return Math.tan(Rad(Data));
+}
+function COS (Data){
+return Math.cos(Rad(Data));
+}
+function SIN (Data){
+return Math.sin(Rad(Data));
+}
+function ASIN (Data){
+return Deg(Math.asin(Data));
+}
+function ACOS (Data){
+return Deg(Math.acos(Data));
+}
+function ATAN (Data){
+return Deg(Math.atan(Data));
+}
+function Dms(Data2){
+    var Data,Dtk,Mnt,Drj;
+        Data=Math.abs(Data2);
+    const deg=Math.floor(Data);
+    const min=Math.floor((Data-deg)*60);
+    const sec=((Data-deg-min/60)*3600).toFixed(0);
+    
+    if(sec<60){Dtk=sec;Mnt=min;}
+    else {Dtk=0;Mnt=min+1;}
+    if(Mnt<60){Mnt=Mnt;Drj=deg;}
+    else {Mnt=0;Drj=deg+1;}
+
+    var tanda,tandaD,tandaM,tandaS;
+    if(Data2<0){tanda="-"}
+    else {tanda="+"}
+    if (Drj<10){tandaD="0"}
+    else {tandaD=""}
+    if (Mnt<10){tandaM="0"}
+    else {tandaM=""}
+    if (Dtk<10){tandaS="0"}
+    else {tandaS=""}
+    return tanda+tandaD+Drj+"°"+tandaM+Mnt+"'"+tandaS+Dtk+"''";
+}
+
+function Dms2(Data2){
+    var Data,Dtk,Mnt,Drj;
+        Data=Math.abs(Data2);
+    const deg=Math.floor(Data);
+    const min=Math.floor((Data-deg)*60);
+    const sec=((Data-deg-min/60)*3600).toFixed(2);
+    
+    if(sec<60){Dtk=sec;Mnt=min;}
+    else {Dtk=0;Mnt=min+1;}
+    if(Mnt<60){Mnt=Mnt;Drj=deg;}
+    else {Mnt=0;Drj=deg+1;}
+
+    var tanda,tandaD,tandaM,tandaS;
+    if(Data2<0){tanda="-"}
+    else {tanda="+"}
+    if (Drj<10){tandaD="0"}
+    else {tandaD=""}
+    if (Mnt<10){tandaM="0"}
+    else {tandaM=""}
+    if (Dtk<10){tandaS="0"}
+    else {tandaS=""}
+    return tanda+tandaD+Drj+"°"+tandaM+Mnt+"'"+tandaS+Dtk+"''";
+}
+function Hms2(Data2){
+    var Data,Dtk,Mnt,Drj;
+        Data=Math.abs(Data2);
+    const deg=Math.floor(Data);
+    const min=Math.floor((Data-deg)*60);
+    const sec=((Data-deg-min/60)*3600).toFixed(0);
+    
+    if(sec<60){Dtk=sec;Mnt=min;}
+    else {Dtk=0;Mnt=min+1;}
+    if(Mnt<60){Mnt=Mnt;Drj=deg;}
+    else {Mnt=0;Drj=deg+1;}
+
+    var tanda,tandaD,tandaM,tandaS;
+    if(Data2<0){tanda=""}
+    else {tanda=""}
+    if (Drj<10){tandaD="0"}
+    else {tandaD=""}
+    if (Mnt<10){tandaM="0"}
+    else {tandaM=""}
+    if (Dtk<10){tandaS="0"}
+    else {tandaS=""}
+    return tanda+tandaD+Drj+":"+tandaM+Mnt+":"+tandaS+Dtk+"";
+}
+  </script>
+</body>
+</html>
