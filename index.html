@@ -91,7 +91,7 @@
       background-color:#017a5a;
     }
 
-    /* Dropdown */
+   /* Dropdown */
     .navbar .dropdown:hover .dropdown-content {
       display: block;
     }
@@ -155,7 +155,60 @@
         position: static;
         background-color: #007B5E;
       }
-    }
+      .dropdown {
+    position: relative;
+}
+
+.content-dropdown {
+    display: none;
+    position: relative;
+    background-color:linear-gradient(80deg, #003f2e, #007B5E);
+    min-width: 210px;
+    box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+
+.dropdown:hover .content-dropdown {
+    display: block;
+}
+
+.content-dropdown a {
+    color: rgb(255, 255, 255);
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px;
+}
+
+.content-dropdown2 {
+    display: none;
+    position: relative;
+    background-color:linear-gradient(80deg, #003f2e, #007B5E);
+    min-width: 200px;
+    box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown2:hover .content-dropdown2 {
+    display: block;
+}
+
+.dropdown2 {
+    position: relative;
+	display: inline-block;
+}
+
+.content-dropdown a {
+    color: rgb(255, 255, 255);
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px;
+ }
+}
   
   /* Isi */  
   main {
@@ -339,13 +392,38 @@
   </div>
   <nav class="navbar">
     <ul id="navMenu">
-      <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
-      <li><a href="webnurmuhammad.html"><i class="fas fa-globe"></i> Website Ponpes Nur Muhammad</a></li>
-      <li><a href="jadwalwaktushalat.html"><i class="fas fa-mosque"></i>  Aplikasi Jadwal Waktu Shalat</a></li>
-      <li><a href="#"><i class="fas fa-kaaba"></i>  Aplikasi Azimat dan Bayangan Kiblat</a></li>
-      <li><a href="#"><i class="fas fa-moon"></i>  Hisab Awal Bulan Tsimarul Murid</a></li>
-      <li><a href="QnA.html"><i class="fas fa-question-circle"></i> QnA Bersama Yai Saman</a></li>
-      <li><a href="kontak.html"> <i class="fas fa-envelope"></i> Kontak Kami</a></li>
+      <li><a href="index.html"><i class="fas fa-home"></i> Home Page</a></li>
+      <li class="li-navbar dropdown">
+                    <a href="#" class="a-navbar"> <i class="fas fa-school"></i> Profil Ponpes &#x25BE;</a>
+                    <div class="content-dropdown">
+                        <a href="webnurmuhammad.html"><i class="fas fa-book"></i> Profil Lembaga</a>
+                        <div class="dropdown2">
+                            <a href="#" class="a-navbar"><i class="fas fa-graduation-cap"></i> Profil Pengasuh &#x25BE;</a>
+                            <div class="content-dropdown2">
+                                <a href="biodata.html">Biodata</a>
+                                <a href="biodata.html">Sanad Keilmuan</a>
+                                <a href="sanad-dalail.html">Sanad Dalail Al-Khoirot</a>
+                                <a href="sanad-thoriqoh.html">Sanad Thoriqoh</a>
+                            </div>
+                        </div>
+                        <a href="#"><i class="fas fa-user-graduate"></i> Asatidz</a>
+                    </div>
+                </li>
+      <li class="li-navbar dropdown">
+                    <a href="#" class="a-navbar"> <i class="fas fa-sun"></i></i> Aplikasi Ilmu Falak &#x25BE;</a>
+                    <div class="content-dropdown">
+                        <a href="jadwalwaktushalat.html"><i class="fas fa-mosque"></i>  Aplikasi Jadwal Waktu Shalat</a>
+                        <a href="#"><i class="fas fa-kaaba"></i>  Aplikasi Azimat dan Bayangan Kiblat</a>
+                        <a href="#"><i class="fas fa-moon"></i>  Hisab Awal Bulan Tsimarul Murid</a>
+                    </div>
+                </li>
+            <li class="li-navbar dropdown">
+                    <a href="#" class="a-navbar"> <i class="fas fa-envelope"></i> Kontak Kami &#x25BE;</a>
+                    <div class="content-dropdown">
+                        <a href="QnA.html"><i class="fas fa-question-circle"></i>  QnA Bersama Yai Saman</a>
+                        <a href="kontak.html"><i class="fas fa-envelope"></i> Kontak Kami</a>
+                    </div>
+                </li>
       <li><a href="infaqyuk.html" style="color: yellow;"><i class="fas fa-donate"></i> Infaq Yuk</a></li>
     </ul>
   </nav>
