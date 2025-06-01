@@ -25,7 +25,7 @@ header {
 }
 
 .logo {
-  height: 50px;
+  height: 80px;
   width: auto;
   border-radius: 10px;
 }
@@ -37,18 +37,18 @@ header {
 
 .header-text h1 {
   margin: 0;
-  font-size: 1.2rem;
+  font-size: 2rem;
 }
 
 .header-text h2 {
   margin: 5px 0;
-  font-size: 0.8rem;
+  font-size: 1rem;
 }
 
 .header-text h3 {
   margin: 0;
   font-weight: normal;
-  font-size: 0.8rem;
+  font-size: 1rem;
 }
 
 
@@ -63,14 +63,23 @@ header {
 
     h4 {
       text-align: center;
-      margin-bottom: -20px;
-      font-size: 1.5rem;
+      margin-bottom: -60px;
+      font-size: 2.4rem;
       color: #007B5E;
     }
     h5 {
+      text-align: left;
+      padding-left: 10px;
+      margin-bottom: -2px;
+      margin-top: 35px;
+      font-size: 13.5px;
+      color: #3d3d3d;
+    }
+
+    h6 {
       text-align: center;
-      margin-bottom: 20px;
-      font-size: 12px;
+      margin-bottom: -10px;
+      font-size: 25px;
       color: #000000;
     }
 
@@ -159,13 +168,14 @@ header {
   <div class="header-text">
     <h1>APLIKASI JADWAL SHALAT</h1>
     <h2>PONDOK PESANTREN NUR MUHAMMAD BANJARAN</h2>
-    <h3>Al-Hasib : Kiagus Akbar Saman</h3>
+    <h3>Al-Hasib : Kiagus Akbar Saman, M.Pd</h3>
   </div>
 </header>
 
 
   <main>
     <h4>JADWAL WAKTU SHALAT</h4>
+    <h6>إنّ ٱلصّلوة كانت على ٱلمؤمنين كتبا مّوقوتا</h6>
     <h5>Input Data Tempat Yang Ingin Anda Cari dan Ketahui Jadwal Waktu Shalatnya</h5>
 
     <div class="form-row">
@@ -175,22 +185,22 @@ header {
       </div>
       <div class="form-group">
         <label for="namakota">Lokasi</label>
-        <input type="text" id="namakota" value="Mojokerto">
+        <input type="text" id="namakota" value="Cimahi">
       </div>
       <div class="form-group">
         <label for="lok1">Latitude</label>
-        <input type="number" id="lok1" value="-7.5" step="any">
+        <input type="number" id="lok1" value="-6.54" step="any">
       </div>
     </div>
 
     <div class="form-row">
       <div class="form-group">
         <label for="lok2">Longitude</label>
-        <input type="number" id="lok2" value="112.5" step="any">
+        <input type="number" id="lok2" value="107.33" step="any">
       </div>
       <div class="form-group">
         <label for="lok3">Altitude (m)</label>
-        <input type="number" id="lok3" value="35">
+        <input type="number" id="lok3" value="717">
       </div>
       <div class="form-group">
         <label for="lok4">Time Zone</label>
@@ -206,11 +216,12 @@ header {
     <div class="results">
       <p id="hasil0"></p>
       <p id="hasil1"></p>
+      <p id="hasil2"></p>
     </div>
   </main>
 
   <footer>
-    &copy; 2025 Aplikasi Jadwal Shalat - Hendro Kartika Juniawan
+    &copy; 2025 Aplikasi Jadwal Shalat - Hendro Juniawan
   </footer>
 
   <!-- SCRIPT -->
@@ -301,28 +312,29 @@ function BtHitung(){
     BQ17=MOD(BQ16-e+((tz*15)-bt)/15,24);
     if (BQ15<BQ17) {BQ1=BQ15;BQ2=BQ17;} else {BQ1=BQ17;BQ2=BQ15;}
 
-    hasil0.innerHTML="Jadwal Waktu Shalat Wilayah "+kota+" dan Sekitarnya"+"<br>"
+    hasil0.innerHTML="Jadwal Waktu Shalat Wilayah "+kota+" dan Sekitarnya"+"<br>.....<br>"
     +"Hari = "+Hari+" "+Pasaran+", "+TanggalM+" "+NamaBulanM[BulanM]+" "+TahunM+" M "+"<br>"
-    + "1/2 malam = "+Hms2(Nmalam)+"<br>"
-    + "1/3 malam = "+Hms2(Smalam)+"<br>"
-    + "Imsak ____= "+Hms2(Imsak+iht3)+"<br>"
-    + "Shubuh ___= "+Hms2(Shubuh+iht3)+"<br>"
-    + "Thulu' ___= "+Hms2(Terbit-iht3)+"<br>"
-    + "Dluha ____= "+Hms2(Dluha+iht3)+"<br>"
-    + "Dzuhur ___= "+Hms2(DZ+iht2)+"<br>"
-    + "Ashar ____= "+Hms2(ASH+iht3)+"<br>"
-    + "Maghrib __= "+Hms2(Maghrib+iht3)+"<br>"
-    + "Isya _____= "+Hms2(Isya+iht3)+"<br>"
-    + "JamKiblat1= "+Hms2(BQ1)+"<br>"
-    + "JamKiblat2= "+Hms2(BQ2)+"<br>"
+    + "1/2 malam ____= "+Hms2(Nmalam)+"<br>"
+    + "1/3 malam ____= "+Hms2(Smalam)+"<br>"
+    + "Imsak ________= "+Hms2(Imsak+iht3)+"<br>"
+    + "Shubuh _______= "+Hms2(Shubuh+iht3)+"<br>"
+    + "Thulu' _______= "+Hms2(Terbit-iht3)+"<br>"
+    + "Dluha ________= "+Hms2(Dluha+iht3)+"<br>"
+    + "Dzuhur _______= "+Hms2(DZ+iht2)+"<br>"
+    + "Ashar ________= "+Hms2(ASH+iht3)+"<br>"
+    + "Maghrib ______= "+Hms2(Maghrib+iht3)+"<br>"
+    + "Isya _________= "+Hms2(Isya+iht3)+"<br>"
+    + "Jam Kiblat 1 _= "+Hms2(BQ1)+"<br>"
+    + "Jam Kiblat 2 _= "+Hms2(BQ2)+"<br>"
     + "Azimut Kiblat = "+Dms2(AQ1)+"<br>";
     
     hasil1.innerHTML="JD dan Pergerakan Matahari"+"<br>"
-    + "Julian Day = "+jd1+"<br>"
-    + "Deklinasi Ma = "+Dms2(dek)+"<br>"
-    + "Perata Waktu = "+Dms2(e)+"<br>"
-    + "SemiDiameter = "+Dms2(Sd)+"<br>";
-    
+    + "Julian Day ___= "+jd1+"<br>"
+    + "Deklinasi Ma _= "+Dms2(dek)+"<br>"
+    + "Perata Waktu _= "+Dms2(e)+"<br>"
+    + "Semi Diameter = "+Dms2(Sd)+"<br>.....<br>";
+  
+    hasil2.innerHTML="Ditetapkan oleh Tim Ahli Falakiyyah PP. Nur Muhammad Banjaran"
 }
 function KMJD(tgl,bln,thn,jam,tz){
     var ab1,ab2,ab3,ab4,ab5;
