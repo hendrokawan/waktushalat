@@ -1,0 +1,1223 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Hisab Awal Bulan Tsimar - Aplikasi Falakiyyah</title>
+
+  <!-- Google Fonts Amiri (font Islami elegan) -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+
+  <style>
+    /* Reset */
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color:linear-gradient(to bottom right, #f0fdf4, #e0f7fa);
+      color: #f0f0e8;
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+      line-height: 1.6;
+    }
+
+    /* Header */
+    header {
+      background: linear-gradient(10deg, #007B5E, #003f2e);
+      padding: 10px 20px;
+      position: sticky;
+      top: 0;
+      z-index: 999;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .header-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+
+    .header-top .logo {
+      height: 50px;
+      border-radius: 10px;
+    }
+
+    .header-top .title-group {
+      flex: 1;
+      text-align: center;
+    }
+
+    .header-top h1 {
+      margin: 0;
+      font-size: 1.8rem;
+      color: rgb(255, 255, 255);
+    }
+
+    .header-top h2 {
+      font-size: 0.85rem;
+      margin: 2px 0;
+      color: yellow;
+    }
+
+    .header-top h3 {
+      font-size: 0.85rem;
+      margin: 2px 0;
+      font-style: italic;
+      color: rgb(255, 255, 255);
+    }
+
+    .navbar {
+      margin-top: 10px;
+    }
+
+    .navbar ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .navbar li {
+      position: relative;
+      margin: 0 10px;
+    }
+
+    .navbar a {
+      color: white;
+      text-decoration: none;
+      padding: 10px;
+      display: block;
+      font-weight: bold;
+    }
+
+    .navbar a:hover {
+      color: #f2f2f2;
+      text-shadow: 0 0 5px #fff;
+      background-color:#017a5a;
+    }
+
+    /* Dropdown */
+    .navbar .dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #006a4e;
+      min-width: 180px;
+      top: 100%;
+      left: 0;
+      z-index: 1;
+      border-radius: 5px;
+      overflow: hidden;
+    }
+
+    .dropdown-content a {
+      padding: 10px;
+      color: white;
+      display: block;
+    }
+
+    .dropdown-content a:hover {
+      background-color: #00563f;
+    }
+
+    /* Hamburger */
+    .hamburger {
+      display: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    @media (max-width: 768px) {
+      .navbar ul {
+        display: none;
+        flex-direction: column;
+        background-color: linear-gradient(80deg, #003f2e, #007B5E);
+        width: 100%;
+        padding: 10px 0;
+        margin-top: 10px;
+        border-radius: 5px;
+      }
+
+      .navbar ul.show {
+        display: flex;
+      }
+
+      .navbar li {
+        text-align: center;
+        margin: 5px 0;
+      }
+
+      .hamburger {
+        display: block;
+        color: white;
+        margin-left: auto;
+      }
+
+      .dropdown-content {
+        position: static;
+        background-color: #007B5E;
+      }
+      .dropdown {
+    position: relative;
+}
+
+.content-dropdown {
+    display: none;
+    position: relative;
+    background-color:linear-gradient(80deg, #003f2e, #007B5E);
+    min-width: 210px;
+    box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+
+.dropdown:hover .content-dropdown {
+    display: block;
+}
+
+.content-dropdown a {
+    color: rgb(255, 255, 255);
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px;
+}
+
+.content-dropdown2 {
+    display: none;
+    position: relative;
+    background-color:linear-gradient(80deg, #003f2e, #007B5E);
+    min-width: 200px;
+    box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown2:hover .content-dropdown2 {
+    display: block;
+}
+
+.dropdown2 {
+    position: relative;
+	display: inline-block;
+}
+
+.content-dropdown a {
+    color: rgb(255, 255, 255);
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px;
+}
+
+   
+
+	/* Main content */
+    main {
+      max-width: 800px;
+      margin: 30px auto;
+      padding: 20px;
+      background-color: #2e2b24cc; /* transparan */
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
+    }
+
+    main h1 {
+      font-family: 'Amiri', serif;
+      font-size: 2.5rem;
+      color: #f8f9fa;
+      text-align: center;
+      margin-bottom: 30px;
+      line-height: 1.3;
+    }
+
+    /* Form styles */
+    label {
+      display: block;
+      font-weight: 700;
+      margin-top: 20px;
+      color: #ffd95a;
+      font-family: 'Arial', sans-serif;
+      margin-bottom: 5px;
+    }
+
+    select, input[type="text"] {
+      width: 100%;
+      padding: 10px 12px;
+      font-size: 1.1rem;
+      margin-bottom: 10px;
+      border: none;
+      border-radius: 6px;
+      outline: none;
+      font-family: 'Arial', sans-serif;
+    }
+
+    select {
+      background-color: #f9f9f9;
+      color: #333;
+    }
+
+    input[type="text"] {
+      background-color: #fff;
+      color: #333;
+      box-shadow: inset 0 0 5px #aaa;
+    }
+
+    /* Buttons */
+    button {
+      background-color: #4caf50;
+      border: none;
+      padding: 12px 25px;
+      margin: 10px 10px 10px 0;
+      border-radius: 8px;
+      color: white;
+      font-size: 1.1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      font-family: 'Arial', sans-serif;
+    }
+
+    button:hover {
+      background-color: #3b7a34;
+    }
+
+    /* Results */
+    #Hasil0, #Hasil1 {
+      margin-top: 25px;
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 1.2rem;
+      color: #f0f0f0;
+      background-color: #2a422a;
+      padding: 15px;
+      border-radius: 8px;
+      min-height: 50px;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: #1e3a21;
+      color: #c6d8c6;
+      margin-top: 40px;
+      font-size: 0.9rem;
+      font-family: 'Arial', sans-serif;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-top">
+    <img src="Logo Pondok Gurunda 700px (2).png" alt="Logo" class="logo" />
+    <div class="title-group">
+      <h1>APLIKASI FALAKIYYAH</h1>
+      <h2>PONDOK PESANTREN NUR MUHAMMAD BANJARAN</h2>
+      <h3>Al-Hasib : Kiagus Akbar Saman, M.Pd</h3>
+    </div>
+    <div class="hamburger" onclick="toggleMenu()">&#9776;</div>
+  </div>
+  <nav class="navbar">
+    <ul id="navMenu">
+      <li><a href="index.html"><i class="fas fa-home"></i> Home Page</a></li>
+      <li class="li-navbar dropdown">
+                    <a href="#" class="a-navbar"> <i class="fas fa-school"></i> Profil Ponpes &#x25BE;</a>
+                    <div class="content-dropdown">
+                        <a href="webnurmuhammad.html"><i class="fas fa-book"></i> Profil Lembaga</a>
+                        <div class="dropdown2">
+                            <a href="#" class="a-navbar"><i class="fas fa-graduation-cap"></i> Profil Pengasuh &#x25BE;</a>
+                            <div class="content-dropdown2">
+                                <a href="biodata.html">Biodata</a>
+                                <a href="biodata.html">Sanad Keilmuan</a>
+                                <a href="sanad-dalail.html">Sanad Dalail Al-Khoirot</a>
+                                <a href="sanad-thoriqoh.html">Sanad Thoriqoh</a>
+                            </div>
+                        </div>
+                        <a href="#"><i class="fas fa-user-graduate"></i> Asatidz</a>
+                    </div>
+                </li>
+      <li class="li-navbar dropdown">
+                    <a href="#" class="a-navbar"> <i class="fas fa-sun"></i></i> Aplikasi Ilmu Falak &#x25BE;</a>
+                    <div class="content-dropdown">
+                        <a href="jadwalwaktushalat.html"><i class="fas fa-mosque"></i>  Aplikasi Jadwal Waktu Shalat</a>
+                        <a href="azimutdanbayangkiblat.html"><i class="fas fa-kaaba"></i>  Aplikasi Azimat dan Bayangan Kiblat</a>
+                        <a href="Hisab Awal Bulan Tsimarul Murid.html"><i class="fas fa-moon"></i>  Hisab Awal Bulan Tsimarul Murid</a>
+                    </div>
+                </li>
+            <li class="li-navbar dropdown">
+                    <a href="#" class="a-navbar"> <i class="fas fa-envelope"></i> Kontak Kami &#x25BE;</a>
+                    <div class="content-dropdown">
+                        <a href="QnA.html"><i class="fas fa-question-circle"></i>  QnA Bersama Yai Saman</a>
+                        <a href="kontak.html"><i class="fas fa-envelope"></i> Kontak Kami</a>
+                    </div>
+                </li>
+      <li><a href="infaqyuk.html" style="color: yellow;"><i class="fas fa-donate"></i> Infaq Yuk</a></li>
+    </ul>
+  </nav>
+</header>
+
+<script>
+  function toggleMenu() {
+    document.getElementById("navMenu").classList.toggle("show");
+  }
+</script>
+
+  <main>
+    <h1>حساب أوائل الشهور العربية<br>على منهج ثمار المريد</h1>
+
+    <label for="Bulan">Pilih Bulan Hijriyah</label>
+    <select id="Bulan" aria-label="Pilih Bulan Hijriyah">
+      <option value="1">محرم</option>
+      <option value="2">صفر</option>
+      <option value="3">ربيع الأول</option>
+      <option value="4">ربيع الثاني</option>
+      <option value="5">جمادى الأولى</option>
+      <option value="6">جمادى الآخرة</option>
+      <option value="7">رجب</option>
+      <option value="8">شعبان</option>
+      <option value="9">رمضان</option>
+      <option value="10">شوال</option>
+      <option value="11">ذو القعدة</option>
+      <option value="12">ذو الحجة</option>
+    </select>
+
+    <label for="Tahun">Pilih Tahun Hijriyah</label>
+    <select id="Tahun" aria-label="Pilih Tahun Hijriyah">
+      <option>1446</option>
+      <option>1447</option>
+      <option>1448</option>
+      <option>1449</option>
+      <option>1450</option>
+      <option>1451</option>
+      <option>1452</option>
+      <option>1453</option>
+      <option>1454</option>
+      <option>1455</option>
+      <option>1456</option>
+    </select>
+
+    <label for="HariP">Pilih Hari Setelah Ijtima'</label>
+    <select id="HariP" aria-label="Pilih Hari Setelah Ijtima'">
+      <option value="0">0</option>
+      <option value="1">1</option>
+      <option value="2">2</option>
+    </select>
+
+    <label>Lokasi dan Data Tambahan</label>
+    <input type="text" id="namaKota" placeholder="Nama Kota (contoh: Cimahi)" />
+    <input type="text" id="Lt" placeholder="Latitude (contoh: -6.54)" />
+    <input type="text" id="Lt2" placeholder="Longitude (contoh: 107.33)" />
+    <input type="text" id="Lt3" placeholder="Altitude (contoh: 717m)" />
+    <input type="text" id="Lt4" placeholder="Time Zone (contoh: 7)" />
+
+    <div>
+      <button onclick="BtHitung()">Kalkulasi</button>
+      <button onclick="BtHapus()">Hapus</button>
+    </div>
+
+    <p id="Hasil0" aria-live="polite"></p>
+    <p id="Hasil1" aria-live="polite"></p>
+  </main>
+
+  <footer>
+    &copy; 2025 Aplikasi Hisab Awal Bulan - Hendro Juniawan
+  </footer>
+
+  <script>
+    function toggleMenu() {
+      document.getElementById("navMenu").classList.toggle("show");
+    }
+
+    function BtHitung() {
+      // Contoh sederhana: ambil data dan tampilkan
+      const bulan = document.getElementById("Bulan").value;
+      const tahun = document.getElementById("Tahun").value;
+      const hariP = document.getElementById("HariP").value;
+      const kota = document.getElementById("namaKota").value || "tidak diisi";
+      const lat = document.getElementById("Lt").value || "tidak diisi";
+      const lon = document.getElementById("Lt2").value || "tidak diisi";
+      const alt = document.getElementById("Lt3").value || "tidak diisi";
+      const tz = document.getElementById("Lt4").value || "tidak diisi";
+
+      document.getElementById("Hasil0").textContent = `Bulan Hijriyah: ${bulan}, Tahun: ${tahun}, Hari Setelah Ijtima': ${hariP}`;
+      document.getElementById("Hasil1").textContent = `Lokasi: ${kota}, Latitude: ${lat}, Longitude: ${lon}, Altitude: ${alt}, Zona Waktu: ${tz}`;
+    }
+
+    function BtHapus() {
+      document.getElementById("Bulan").selectedIndex = 0;
+      document.getElementById("Tahun").selectedIndex = 0;
+      document.getElementById("HariP").selectedIndex = 0;
+      document.getElementById("namaKota").value = "";
+      document.getElementById("Lt").value = "";
+      document.getElementById("Lt2").value = "";
+      document.getElementById("Lt3").value = "";
+      document.getElementById("Lt4").value = "";
+      document.getElementById("Hasil0").textContent = "";
+      document.getElementById("Hasil1").textContent = "";
+    }
+  </script>
+</body onload>
+    <script>   
+    
+       function BtHitung() {
+	var lokasi,LOK,P,L,Tt,Tz;
+	var HariG,BlnH,ThnH,TglM,BlnM,ThnM;
+	HariG =document.getElementById("HariP").value;
+	BlnH =document.getElementById("Bulan").value;
+	ThnH =document.getElementById("Tahun").value;
+	
+
+	var NamaBulanH;
+	if(BlnH==1) { NamaBulanH ="Muharram"}
+	else if(BlnH==2) { NamaBulanH ="Shafar"}
+	else if(BlnH==3) { NamaBulanH ="Robi'ul Awal"}
+	else if(BlnH==4) { NamaBulanH ="Robi'uts Tsani"}
+	else if(BlnH==5) { NamaBulanH ="Jumadal Ula"}
+	else if(BlnH==6) { NamaBulanH ="Jumadal Akhiroh"}
+	else if(BlnH==7) { NamaBulanH ="Rojab"}
+	else if(BlnH==8) { NamaBulanH ="Sya'ban"}
+	else if(BlnH==9) { NamaBulanH ="Ramadlan"}
+	else if(BlnH==10) { NamaBulanH ="Syawal"}
+	else if(BlnH==11) { NamaBulanH ="Dzul Qo'dah"}
+	else if(BlnH==12) { NamaBulanH ="Dzul Hijjah"}
+	else { NamaBulanH ="Maret"}
+
+	lokasi =document.getElementById("namaKota").value;
+	P =document.getElementById("Lt").value;
+	L =document.getElementById("Lt2").value;
+	Tt =document.getElementById("Lt3").value;
+	Tz =document.getElementById("Lt4").value;
+        if (lokasi=="") {
+                lokasi = "Pondok Pesantren Nur Muhammad Banjaran";
+            } else {
+                lokasi = lokasi;
+            }
+
+        if (P=="") {
+                P = "-6.54";
+            } else {
+                P = P;
+            }
+
+     if (L=="") {
+                L = "107.33";
+            } else {
+                L = L;
+            }
+
+	if (Tt=="") {
+                Tt = "717";
+            } else {
+                Tt = Tt;
+            }
+
+     if (Tz=="") {
+                Tz = "7";
+            } else {
+                Tz = Tz;
+            }
+
+	P=P*1;
+	L=L*1;
+	Tt=Tt*1;
+	Tz=Tz*1;
+	
+var Detail="Detail Perhitungan : ";
+var BulAsk=
+ " Bulan Hijriyah = "+NamaBulanH+" "+ThnH+"<br>"
++" Pilihan Hari__ = "+(HariG)
+ ;
+
+var Lok="Lokasi = "+lokasi;
+var LatAsk=
+"Lintang Tempat = "+Dms3(P)+"<br>"+" Bujur__ Tempat = "+Dms3(L)+"<br>"
++" Tinggi_ Tempat = "+(Tt)+" Mdpl"+"<br>"
++" Time_____ Zone = "+(Tz)+"<br>"
+ ;
+//Hisab Ijtima'
+var BLNH=BlnH*1;
+var THNH=ThnH*1;
+var Hy, K, T, Jde, E;
+var M, N, F, G, h, a;
+var Tk1, Tk2, Tk3, Tk4, Tk;
+
+
+	Hy = THNH + (((BLNH - 1) * 29.53) / 354.3671);
+	K = AskRound0(((Hy - 1410) * 12)) - 129;
+	T = K / 1236.85;
+	Jde = 2451550.09765 + 29.530588853 * K + 0.0001337 * T*T;
+	E = (1 - (0.002516 * T)) - ((0.0000074 * T) * T);
+		M = ModFDiv(2.5534 + 29.10535669 * K - 0.0000218 * T *T, 360);
+		N = ModFDiv(201.5643 + 385.81693528 * K + 0.0107438 * T *T, 360);
+		F = ModFDiv(160.7108 + 390.67050274 * K - 0.0016341 * T *T, 360);
+		G = ModFDiv(124.7746 - 1.5637558 * K + 0.0020691 * T *T, 360);
+		h = F - 0.02665 * Sin(Rad(G));
+		a = ModFDiv(299.77 + 0.107408 * K - 0.009173 * T *T, 360);
+	Tk1 = -0.4072 * Sin(Rad(N)) + 0.17241 * E * Sin(Rad(M));
+	Tk2 = Tk1 + 0.01608 * Sin(Rad(2 * N)) + 0.01039 * Sin(Rad(2 * F));
+	Tk3 = Tk2 + 0.00739 * E * Sin(Rad(N - M)) - 0.00514 * E * Sin(Rad(N + M));
+	Tk4 = Tk3 + 0.00208 * (E*E) * Sin(Rad(2 * M)) - 0.00111 * Sin(Rad(N - 2 * F));
+	Tk = Tk4 - 0.00057 * Sin(Rad(N + 2 * F));
+
+var JdIjtima, JamIjtima,Tg;
+		JdIjtima = Jde + 0.5 + Tk + Tz / 24;
+		JamIjtima = (JdIjtima - Math.floor(JdIjtima)) * 24;			
+var Ket;
+if(Tz==7) { Ket ="WIB"}
+else if(Tz==8) { Ket ="WITA"}
+else if(Tz==9) { Ket ="WITA"}
+else { Ket ="GMT+"+Tz;}
+
+var A, AA, B,C,D,E,Tgl,M, Y,Z,F;
+var PA,Hari,Ps,BulanM,NamaBulanM,BlnM;
+var NamaHari,HariJ,NamaPasaran,PasaranJ;	
+						
+	Z = Math.floor(JdIjtima);
+	F = JdIjtima - Z;				
+        if (Z<2299161){A=Z;}				
+        else { AA = Math.floor((Z-1867216.25)/36524.25);A =Math.floor(Z + 1 + AA - Math.floor(AA/4))};	
+        B = Math.floor(A+1524);				
+        C = Math.floor((Math.floor((B-122.1)/365.25)));				
+        D = Math.floor((Math.floor(365.25*C)));				
+        E = Math.floor((Math.floor((B-D)/30.6001)));				
+        Tgl = Math.floor((B-D-Math.floor(30.6001*E)+F));				
+        if (E>13){M=E-13;}				
+        else {M = E - 1;};				
+        if (M<3){Y = C - 4715;}				
+        else {Y = C - 4716;};
+	PA=Z+3;
+	Hari=PA-(Math.floor(PA/7)*7);
+	Ps=(PA-2)-(Math.floor((PA-2)/5)*5);
+BulanM = ["","Januari","Februari","Maret","April","Mei","Juni","Juli","Agustus","September","Oktober","November","Desember"];
+NamaHari = ["Jum'at","Sabtu","Ahad","Senin","Selasa","Rabu","Kamis","Jum'at"];
+HariJ=NamaHari[Hari];
+NamaPasaran = ["Kliwon","Legi","Pahing","Pon","Wage","Kliwon"];
+PasaranJ=NamaPasaran[Ps];
+
+BlnM=M;
+	if(BlnM==1) { NamaBulanM ="Januari"}
+	else if(BlnM==2) { NamaBulanM ="Februari"}
+	else if(BlnM==3) { NamaBulanM ="Maret"}
+	else if(BlnM==4) { NamaBulanM ="April"}
+	else if(BlnM==5) { NamaBulanM ="Mei"}
+	else if(BlnM==6) { NamaBulanM ="Juni"}
+	else if(BlnM==7) { NamaBulanM ="Juli"}
+	else if(BlnM==8) { NamaBulanM ="Agustus"}
+	else if(BlnM==9) { NamaBulanM ="September"}
+	else if(BlnM==10) { NamaBulanM ="Oktober"}
+	else if(BlnM==11) { NamaBulanM ="November"}
+	else if(BlnM==12) { NamaBulanM ="Desember"}
+	else { NamaBulanM ="Maret"}
+
+
+var Ijt="A. HISAB IJTIMA'"+"<br>"
++" Hy_ = "+Hy+"<br>"
++" K__ = "+K+"<br>"
++" T__ = "+T+"<br>"
++" Jde = "+Jde+"<br>"
++" E__ = "+E+"<br>"
++" M__ = "+Dms3(M)+"<br>"
++" N__ = "+Dms3(N)+"<br>"
++" F__ = "+Dms3(F)+"<br>"
++" G__ = "+Dms3(G)+"<br>"
++" h__ = "+Dms3(h)+"<br>"
++" a__ = "+Dms3(a)+"<br>"
++" Tk1 = "+Dms3(Tk1)+"<br>"
++" Tk2 = "+Dms3(Tk2)+"<br>"
++" Tk3 = "+Dms3(Tk3)+"<br>"
++" Tk4 = "+Dms3(Tk4)+"<br>"
++" Tk_ = "+Dms3(Tk)+"<br>"
++" JdK = "+(JdIjtima)+"<br>"
++" Jam = "+Hms(JamIjtima)+" "+Ket+"<br><br>"
++" Z__ = "+Z+"<br>"
++" AA_ = "+AA+"<br>"
++" A__ = "+A+"<br>"
++" B__ = "+B+"<br>"
++" C__ = "+C+"<br>"
++" D__ = "+D+"<br>"
++" E__ = "+E+"<br>"
++" Tgl = "+Tgl+"<br>"
++" Bln = "+M+" ("+NamaBulanM+")<br>"
++" Thn = "+Y+"<br>"
++" PA_ = "+PA+"<br>"
++" Hari= "+Hari+" ("+HariJ +" Dihitung dari Sabtu)<br>"
++" PasN= "+Ps+" ("+PasaranJ +" Dihitung dari Legi)<br><br>"
+
++"<b> Kesimpulan Hisab Ijtima' "+"<br>"
++" Ijtima' Menjelang Awal Bulan "+NamaBulanH+" "+ThnH+" H Terjadi Pada :<br>"
++" Hari "+""+HariJ+" "+PasaranJ +","+Tgl+" "+NamaBulanM+" "+Y+" M Pukul "+Hms(JamIjtima)+" "+Ket+"<br>"
+ ;
+var TglIjtimak=HariJ+" "+PasaranJ +","+Tgl+" "+NamaBulanM+" "+Y+" M Pukul "+Hms(JamIjtima)+" "+Ket;
+
+//Hisab Hilal
+var hrG,TglG,JdG;
+hrG=HariG*1;
+var Ket2;
+if(hrG==0) { Ket2 ="SAAT HARI IJTIMA'"}
+else if(hrG==1) { Ket2 ="SEHARI SETELAH IJTIMA'"}
+else if(hrG==2) { Ket2 ="DUA HARI SETELAH IJTIMA'"}
+else { Ket2 ="ALI MUSTOFA";}
+var JdIjtima, JamIjtima;
+var TGL,BLN, THN;
+var BlnM,ThnM,B1, Jd1;
+		JdIjtima=JdIjtima;		
+	    	JamIjtima = (JdIjtima - Math.floor(JdIjtima)) * 24;
+		TGL=Tgl+hrG;	
+	    	BLN=M;	
+		THN=Y;	
+
+	if (BLN < 3){BlnM= BLN + 12;} 
+	else {BlnM= BLN;}
+	if (BLN < 3){ThnM= THN-1;} else {ThnM= THN;}
+	B1 = 2 - Math.floor(ThnM / 100) + Math.floor(Math.floor(ThnM / 100) / 4);
+	Jd1 = Math.floor(365.25 * (ThnM + 4716)) + Math.floor(30.6001 * (BlnM + 1)) + TGL + ((18 - Tz) / 24) - 1524.5 + B1;
+		//Jd1 = (int)(365.25 * (ThnM + 4716)) + (int)(30.6001 * (BlnM + 1)) + TGL + ((18 - Tz) / 24) - 1524.5 + B1;
+
+
+
+JdG=(Jd1+0.5);
+Z = Math.floor(JdG);
+	F = JdG+0.5 - Z;				
+        if (Z<2299161){A=Z;}				
+        else { AA = Math.floor((Z-1867216.25)/36524.25);A =Math.floor(Z + 1 + AA - Math.floor(AA/4))};	
+        B = Math.floor(A+1524);				
+        C = Math.floor((Math.floor((B-122.1)/365.25)));				
+        D = Math.floor((Math.floor(365.25*C)));				
+        E = Math.floor((Math.floor((B-D)/30.6001)));				
+        Tgl = Math.floor((B-D-Math.floor(30.6001*E)+F));				
+        if (E>13){M=E-13;}				
+        else {M = E - 1;};				
+        if (M<3){Y = C - 4715;}				
+        else {Y = C - 4716;};
+
+	PA=Z+3;
+	Hari=PA-(Math.floor(PA/7)*7);
+	Ps=(PA-2)-(Math.floor((PA-2)/5)*5);
+BulanM = ["","Januari","Februari","Maret","April","Mei","Juni","Juli","Agustus","September","Oktober","November","Desember"];
+NamaHari = ["Jum'at","Sabtu","Ahad","Senin","Selasa","Rabu","Kamis","Jum'at"];
+HariJ=NamaHari[Hari];
+NamaPasaran = ["Kliwon","Legi","Pahing","Pon","Wage","Kliwon"];
+PasaranJ=NamaPasaran[Ps];
+TglG=" Hari "+""+HariJ+" "+PasaranJ +","+Tgl+" "+NamaBulanM+" "+Y;
+
+var T,M,A,B,C,Y,Q,Z,S;
+var Sdm,Em,Dm;
+var Dip,Hm,ts, GrWIB;
+var Azm,Krm,Arm;
+
+T=( Jd1 - 2457024 ) / 36525;
+M=ModFDiv(357.633045 + 35999.053 * T,360);
+A=ModFDiv(194.9063616 - 1934.136 * T,360);
+B=ModFDiv(280.8283363 + 36000.76983 * T,360);
+C=0.004795 * SinA( A) + 0.0000572 * SinA (2 * A) + 0.00035 * SinA (2 * B);
+Y=0.00256388 * CosA(A) - 0.000025 *  CosA (2 * A) + 0.000152 * CosA (2 * B);
+Q=23.437409 + Y - 0.01300416 * T ;
+Z=1.9161277  * SinA (M) + 0.02002638 * SinA (2 * M) + 0.00026833 * SinA (3 * M);
+S=ModFDiv(B + Z + C - 0.0056861,360);
+Sdm=0.267 / ( 1 - 0.017  *CosA (M) );
+Em=( -1.915 *SinA (M) - 0.02 *SinA (2*M) + 2.466 *SinA (2*S)  - 0.053 *SinA (4*S) ) / 15;
+Dm = Asin(SinA(S) * SinA(Q));
+Dip=(1.76/60)*Math.sqrt(Tt);
+hm=0-Sdm-(34.5/60)-Dip;
+ts = Deg(Math.acos(-Tan(Rad(P)) * Tan(Rad(Dm)) + Sin(Rad(hm)) / Cos(Rad(P)) / Cos(Rad(Dm))));
+GrWIB= 12 - Em + ((Tz * 15) - L + ts) / 15;
+
+
+var Hll="B. HISAB HILAL PADA : "+Ket2+"<br>"
++"--------- "+TglG+" --------"+"<br><br>"
++"B.I DATA MATAHARI"+"<br>"
++"B.1 Perkiraan Terbenam Matahari"+"<br>"
++" JdG = "+Jd1+"<br>"
++" T__ = "+T+"<br>"
++" 1.M __ = "+Dms3(M)+"<br>"
++" 2.A __ = "+Dms3(A)+"<br>"
++" 3.B __ = "+Dms3(B)+"<br>"
++" 4.C __ = "+Dms3(C)+"<br>"
++" 5.Y __ = "+Dms3(Y)+"<br>"
++" 6.Z __ = "+Dms3(Z)+"<br>"
++" 7.Q __ = "+Dms3(Q)+"<br>"
++" 8.S __ = "+Dms3(S)+"<br>"
++" 9.Dm _ = "+Dms3(Dm)+"<br>"
++" 10.Sdm = "+Dms3(Sdm)+"<br>"
++" 11.Em_ = "+Dms3(Em)+"<br>"
++" 12.hm_ = "+Dms3(hm)+"<br>"
++" 13.tm_ = "+Dms3(ts)+"<br>"
++" 14.Grb = "+Hms(GrWIB)+" "+Ket+"<br><br>"
+;
+
+var Jd2,T,M,A,B,C,Y,Q,Z,S;
+var Sdm,Em,Dm;
+var Dip,Hm,ts, GrWIB2;
+var Azm,Krm,Arm;
+
+Jd2 = Math.floor(365.25 * (ThnM + 4716)) + Math.floor(30.6001 * (BlnM + 1)) + TGL + ((GrWIB - Tz) / 24) - 1524.5 + B1;
+T=( Jd2 - 2457024 ) / 36525;
+M=ModFDiv(357.633045 + 35999.053 * T,360);
+A=ModFDiv(194.9063616 - 1934.136 * T,360);
+B=ModFDiv(280.8283363 + 36000.76983 * T,360);
+C=0.004795 * SinA( A) + 0.0000572 * SinA (2 * A) + 0.00035 * SinA (2 * B);
+Y=0.00256388 * CosA(A) - 0.000025 *  CosA (2 * A) + 0.000152 * CosA (2 * B);
+Q=23.437409 + Y - 0.01300416 * T ;
+Z=1.9161277  * SinA (M) + 0.02002638 * SinA (2 * M) + 0.00026833 * SinA (3 * M);
+S=ModFDiv(B + Z + C - 0.0056861,360);
+Sdm=0.267 / ( 1 - 0.017  *CosA (M) );
+Em=( -1.915 *SinA (M) - 0.02 *SinA (2*M) + 2.466 *SinA (2*S)  - 0.053 *SinA (4*S) ) / 15;
+Dm = Asin(SinA(S) * SinA(Q));
+Dip=(1.76/60)*Math.sqrt(Tt);
+hm=0-Sdm-(34.5/60)-Dip;
+ts = Deg(Math.acos(-Tan(Rad(P)) * Tan(Rad(Dm)) + Sin(Rad(hm)) / Cos(Rad(P)) / Cos(Rad(Dm))));
+GrWIB2= 12 - Em + ((Tz * 15) - L + ts) / 15;
+
+var Hll2=
+"B.2 Data Matahari Saat Terbenam Matahari Pukul "+Hms(GrWIB)+" "+Ket+"<br>"
++" JdT = "+Jd2+"<br>"
++" T__ = "+T+"<br>"
++" 1.M __ = "+Dms3(M)+"<br>"
++" 2.A __ = "+Dms3(A)+"<br>"
++" 3.B __ = "+Dms3(B)+"<br>"
++" 4.C __ = "+Dms3(C)+"<br>"
++" 5.Y __ = "+Dms3(Y)+"<br>"
++" 6.Z __ = "+Dms3(Z)+"<br>"
++" 7.Q __ = "+Dms3(Q)+"<br>"
++" 8.S __ = "+Dms3(S)+"<br>"
++" 9.Dm _ = "+Dms3(Dm)+"<br>"
++" 10.Sdm = "+Dms3(Sdm)+"<br>"
++" 11.Em_ = "+Dms3(Em)+"<br>"
++" 12.hm_ = "+Dms3(hm)+"<br>"
++" 13.tm_ = "+Dms3(ts)+"<br>"
++" 14.Grb = "+Hms(GrWIB2)+" "+Ket+"<br><br>"
+;
+
+var Jd3,T,M,A,B,C,Y,Q,Z,S;
+var Sdm,Em,Dm;
+var Dip,Hm,ts, GrWIB2;
+var Ltk,Azm,Krm,Arm;
+
+Jd3 = Math.floor(365.25 * (ThnM + 4716)) + Math.floor(30.6001 * (BlnM + 1)) + TGL + ((GrWIB2 - Tz) / 24) - 1524.5 + B1;
+T=( Jd3 - 2457024 ) / 36525;
+M=ModFDiv(357.633045 + 35999.053 * T,360);
+A=ModFDiv(194.9063616 - 1934.136 * T,360);
+B=ModFDiv(280.8283363 + 36000.76983 * T,360);
+C=0.004795 * SinA( A) + 0.0000572 * SinA (2 * A) + 0.00035 * SinA (2 * B);
+Y=0.00256388 * CosA(A) - 0.000025 *  CosA (2 * A) + 0.000152 * CosA (2 * B);
+Q=23.437409 + Y - 0.01300416 * T ;
+Z=1.9161277  * SinA (M) + 0.02002638 * SinA (2 * M) + 0.00026833 * SinA (3 * M);
+S=ModFDiv(B + Z + C - 0.0056861,360);
+Sdm=0.267 / ( 1 - 0.017  *CosA (M) );
+Em=( -1.915 *SinA (M) - 0.02 *SinA (2*M) + 2.466 *SinA (2*S)  - 0.053 *SinA (4*S) ) / 15;
+Dm = Asin(SinA(S) * SinA(Q));
+Dip=(1.76/60)*Math.sqrt(Tt);
+hm=0-Sdm-(34.5/60)-Dip;
+ts = Deg(Math.acos(-Tan(Rad(P)) * Tan(Rad(Dm)) + Sin(Rad(hm)) / Cos(Rad(P)) / Cos(Rad(Dm))));
+GrWIB3= 12 - Em + ((Tz * 15) - L + ts) / 15;
+Ltk = Deg(Math.atan(-SinA(P) / TanA(ts) + CosA(P) * TanA(Dm) / SinA(ts)));
+Azm = 270+Deg(Math.atan(-SinA(P) / TanA(ts) + CosA(P) * TanA(Dm) / SinA(ts)));
+Krm=Deg(Math.acos(CosA(S)/CosA(Dm)));
+if (S > 180){Arm= 360 - Krm;} 
+else {Arm= Krm;}
+
+
+var Hll3=
+"B.3 Data Matahari Saat Terbenam Matahari Hakiki Pukul "+Hms(GrWIB2)+" "+Ket+"<br>"
++" JdT = "+Jd3+"<br>"
++" T__ = "+T+"<br>"
++" 1.M __ = "+Dms3(M)+"<br>"
++" 2.A __ = "+Dms3(A)+"<br>"
++" 3.B __ = "+Dms3(B)+"<br>"
++" 4.C __ = "+Dms3(C)+"<br>"
++" 5.Y __ = "+Dms3(Y)+"<br>"
++" 6.Z __ = "+Dms3(Z)+"<br>"
++" 7.Q __ = "+Dms3(Q)+"<br>"
++" 8.S __ = "+Dms3(S)+"<br>"
++" 9.Dm _ = "+Dms3(Dm)+"<br>"
++" 10.Sdm = "+Dms3(Sdm)+"<br>"
++" 11.Em_ = "+Dms3(Em)+"<br>"
++" 12.hm_ = "+Dms3(hm)+"<br>"
++" 13.tm_ = "+Dms3(ts)+"<br>"
++" 14.Grb = "+Hms(GrWIB3)+" "+Ket+"<br>"
++" 15.Ltk = "+Dms3(Ltk)+"<br>"
++" 16.Azm = "+Dms3(Azm)+"<br>"
++" 17.Krm = "+Dms3(Krm)+"<br>"
++" 18.Arm = "+Dms3(Arm)+"<br><br>"
+
+;
+
+
+		//DATA BULAN
+		var F,U,L1,L2;
+		var Tk1,Tk2,Tk3;
+		var La,Lb,W;
+		var Db,Krb,Arb,Tb;
+		var hH,BB,Sdb,Hpb,hT;
+		var Dr,Ref;
+		var hU,hL,Azb,Bz,Br;
+		var EloG,EloT,Lama,GrbWIB,Nurul;
+		A=ModFDiv(78.05929248 + 477198.86753 * T,360);
+		F=ModFDiv(216.882972 + 483202.01873 * T,360);
+		U=ModFDiv(130.9646516 + 445267.11135*T,360);
+		L1=ModFDiv(51.79238856 + 481267.88088 * T,360);
+		Tk1=6.28888 *SinA (A) - 1.27388* SinA (A - 2*U) + 0.65833 *SinA (2*U) + 0.21361 *SinA (2*A) - 0.18555 * SinA (M);
+		Tk2=-0.11444 *SinA (2*F) - 0.05888* SinA (2*A - 2*U) - 0.05722 *SinA (A + M - 2*U) + 0.05333 *SinA (A + 2*U);
+		Tk3=-0.04583 *SinA (M - 2*U) + 0.04111 *SinA (A - M) - 0.03472 *SinA (U) - 0.03055 *SinA (A + M) - 0.015277* SinA (2*F - 2*U);
+		L2=ModFDiv(L1 + Tk1+Tk2+Tk3,360);
+		La=5.12805 *SinA( F) + 0.28055 *SinA (A + F) + 0.27777 *SinA (A - F) ;
+		Lb=- 0.17333 *SinA (F - 2*U) - 0.05527 *SinA ( A - F - 2*U) - 0.04638 *SinA ( A + F - 2*U);
+		W=La+Lb;
+		Db=Deg(Math.asin( CosA( Q)* SinA (W) + SinA (Q) *CosA (W)* SinA( L2) ));
+		Krb=Deg(Math.acos(CosA(L2)*CosA(W)/CosA(Db)));
+		if (L2>180){Arb=360-Krb;}
+		else {Arb=Krb;}
+		Tb=Arm-Arb+ts;	
+ 		hH=Deg(Math.asin( SinA( P)* SinA (Db) + CosA (P) *CosA (Db)* CosA( Tb) ));
+		var A2=(A - 1.27388* SinA (A - 2*U) + 0.65833 *SinA (2*U)  - 0.18555* SinA (M)) + 180;
+		BB=CosA(A2)*3.196+60.3;
+		Sdb=Deg(Math.asin(0.273/BB));
+		Hpb=Deg(Math.asin(1/BB));
+		hT=hH-(CosA(hH)*Hpb);
+		Dr=hT+Sdb;
+		Ref=0.01659/Tan(Rad(Dr+10.3/(Dr+5.125555)));
+		if (Dr<(-35/60)){Ref = 34.5/60;}				
+        	else {Ref = Ref;};
+		hU=hT+Ref +Dip +Sdb;
+		var hC=hT+Ref +Dip ;
+		hL=hT+Ref +Dip -Sdb;
+		var Ltk2 = Deg(Math.atan(-SinA(P) / TanA(Tb) + CosA(P) * TanA(Db) / SinA(Tb)));
+		Azb = 270+Deg(Math.atan(-SinA(P) / TanA(Tb) + CosA(P) * TanA(Db) / SinA(Tb)));
+		Bz=Azb-Azm;
+		Br=Arb-Arm;
+		EloG= Deg(Math.acos(SinA(Dm)*SinA(Db)+CosA(Dm)*CosA(Db)*CosA(Br)));
+		EloT= Deg(Math.acos(SinA(hm)*SinA(hT)+CosA(hm)*CosA(hT)*CosA(Bz)));
+		Lama=Br/15;
+		GrbWIB=GrWIB3+Lama;
+		Nurul= (Math.sqrt((Bz*Bz)+(hL*hL))/15);		
+		
+	
+var Hll4=
+"B.II DATA BULAN"+"<br>"
++" 1.A __ = "+Dms3(A)+"<br>"
++" 2.F __ = "+Dms3(F)+"<br>"
++" 3.U __ = "+Dms3(U)+"<br>"
++" 4.L __ = "+Dms3(L1)+"<br>"
++" 5.Tk1_ = "+Dms3(Tk1)+"<br>"
++" 6.Tk2_ = "+Dms3(Tk2)+"<br>"
++" 7.Tk3_ = "+Dms3(Tk3)+"<br>"
++" 8.Long = "+Dms3(L2)+"<br>"
++" 9.Lati = "+Dms3(W)+"<br>"
++" 10.Dec = "+Dms3(Db)+"<br>"
++" 11.Krb = "+Dms3(Krb)+"<br>"
++" 12.Arb = "+Dms3(Arb)+"<br>"
++" 13.tb_ = "+Dms3(Tb)+"<br>"
++" 14.hcH = "+Dms3(hH)+"<br>"
++" 15.BB_ = "+Dms3(BB)+"<br>"
++" 16.Sdb = "+Dms3(Sdb)+"<br>"
++" 17.Hpb = "+Dms3(Hpb)+"<br>"
++" 18.hcT = "+Dms3(hT)+"<br>"
++" 19.Dsr = "+Dms3(Dr)+"<br>"
++" 20.Ref = "+Dms3(Ref)+"<br>"
++" 21.hcU = "+Dms3(hU)+"<br>"
++" 22.hcC = "+Dms3(hC)+"<br>"
++" 23.hcL = "+Dms3(hL)+"<br>"
++" 24.Ltk = "+Dms3(Ltk2)+"<br>"
++" 25.Azb = "+Dms3(Azb)+"<br>"
++" 26.Daz = "+Dms3(Bz)+"<br>"
++" 27.ElG = "+Dms3(EloG)+"<br>"
++" 28.ElT = "+Dms3(EloT)+"<br>"
++" 29.Lam = "+Hms(Lama)+"<br>"
++" 30.Grb = "+Hms(GrbWIB)+" "+Ket+"<br>"
++" 31.Nrl = "+Nurul.toFixed(7)+" Jari"+"<br>"
+;
+
+Hasil1.innerHTML="<b>"+Detail+"<br>"+BulAsk+" Hari Dari Ijtima' <br><br>"
++Lok+"<br>"+LatAsk+"<br>"
++Ijt+"<br>"
++Hll+"<br>"
++Hll2+"<br>"
++Hll3+"<br>"
++Hll4+"<br>"
+;
+
+var Kes=
+"--------- HISAB AWAL BULAN ---------"+"<br>"
++"--------- TSIMAR AL MURID ---------"+"<br>"
++"Markaz "+lokasi+"<br>"
++"Lintang Tempat = "+Dms3(P)+"<br>"+" Bujur__ Tempat = "+Dms3(L)+"<br>"
++" Tinggi_ Tempat = "+(Tt)+" Mdpl"+"<br>"
++" Time_____ Zone = "+(Tz)+"<br><br>"
++"Bulan "+NamaBulanH+" "+ThnH+" H<br>"
++" Hari Ijtima' "+TglIjtimak+"<br><br>"
++"HASIL HISAB PADA : "+Ket2+"<br>"
++"--------- "+TglG+" --------"+"<br>"
++"A.DATA MATAHARI"+"<br>"
++" 1.Terbenam- Matahari = "+Hms(GrWIB3)+" "+Ket+"<br>"
++" 2.Bujur---- Matahari = "+Dms3(S)+" "+"<br>"
++" 3.Deklinasi Matahari = "+Dms3(Dm)+" "+"<br>"
++" 4.Semi Diameter Mthr = "+Dms3(Sdm)+" "+"<br>"
++" 5.Perata------ Waktu = "+Dms3(Em)+" "+"<br>"
++" 6.Asensio Rekta Mthr = "+Dms3(Arm)+" "+"<br>"
++" 7.Letak---- Matahari = "+Dms3(Ltk)+" "+"<br>"
++" 8.Azimut--- Matahari = "+Dms3(Azm)+" "+"<br><br>"
+
++"B.DATA BULAN"+"<br>"
++" a.Terbenam---- Bulan = "+Hms(GrbWIB)+" "+Ket+"<br>"
++" b.Bujur------- Bulan = "+Dms3(S)+" "+"<br>"
++" c.Tinggi Hilal Hakiki= "+Dms3(hH)+" "+"<br>"
++" d.Tinggi Hilal Atas--= "+Dms3(hU)+" "+"<br>"
++" e.Tinggi Hilal Center= "+Dms3(hC)+" "+"<br>"
++" f.Tinggi Hilal Bawah-= "+Dms3(hL)+" "+"<br>"
++" g.Tinggi Hilal Topo--= "+Dms3(hT)+" "+"<br>"
++" h.Elongasi Geosentris= "+Dms3(EloG)+" "+"<br>"
++" i.Elongasi Toposentr-= "+Dms3(EloT)+" "+"<br><br>"
++" j.Deklinasi--- Bulan = "+Dms3(Db)+" "+"<br>"
++" k.Semi Diameter Blan = "+Dms3(Sdb)+" "+"<br>"
++" l.Horiontal Paralaks = "+Dms3(Hpb)+" "+"<br>"
++" m.Asensio Rekta Blan = "+Dms3(Arb)+" "+"<br>"
++" n.Letak------- Bulan = "+Dms3(Ltk2)+" "+"<br>"
++" o.Azimut------ Bulan = "+Dms3(Azb)+" "+"<br>"
++" p.Lama Hilal Di Ufuq = "+Hms(Lama)+" "+"<br>"
++" q.Nurul -------Hilal = "+Nurul.toFixed(7)+" Jari"+" "+"<br>"
+;
+Hasil0.innerHTML=" "+"<br>"
+
++Kes+"<br>"
+;
+
+        }
+
+	function BtHapus() {
+          Hasil1.innerHTML="<i> " ;
+Hasil0.innerHTML="<i>"+"<b>"+"Data terhapus"+"<br>"+"<b>"
+        }
+
+//formula
+function ModFDiv(data,data1) {		
+        return data - data1 * Math.floor(data/data1);			
+    }
+		
+function Deg ( Rad) {
+return Rad*(45/Math.atan(1));
+}
+
+function Rad (Deg) {
+return Deg*(Math.atan(1)/45);
+}
+
+function Sin (Data) {
+return Math.sin(Data);
+}
+
+function Cos (Data) {
+return Math.cos(Data);
+}
+
+function Tan (Data) {
+return Math.tan(Data);
+}
+function SinA (Data) {
+return Math.sin(Rad(Data));
+}
+
+function CosA (Data) {
+return Math.cos(Rad(Data));
+}
+
+function TanA (Data) {
+return Math.tan(Rad(Data));
+}
+
+function Asin (Data) {
+return Deg(Math.asin(Data));
+}
+
+function Acos (Data) {
+return Deg(Math.acos(Data));
+}
+
+function Atan (Data) {
+return Deg(Math.atan(Data));
+}
+
+//Format Derajat
+function Dms(Data2){
+var Data=Math.abs(Data2);
+const deg=Math.floor(Data);
+const min=Math.floor((Data-deg)*60);
+const sec=((Data-deg-min/60)*3600).toFixed(3);
+
+//menghindari tampil 60 detik
+var Dtk,Mnt,Drj;
+if (sec<60){Dtk=sec;Mnt=min}
+else{Dtk=0;Mnt=min+1}
+if (Mnt<60){Mnt=Mnt;Drj=deg}
+else{Mnt=0;Drj=deg+1}
+
+var tanda,tandaD,tandaM,tandaS;
+if (Data2<0){tanda="-"}
+else{tanda="+"}
+if (Drj<100&&Drj>9){tandaD="0"}
+else if (Drj<10){tandaD="00"}
+else{tandaD=""}
+if (Mnt<10){tandaM="0"}
+else{tandaM=""}
+if (Dtk<10){tandaS="0"}
+else{tandaS=""}
+return tanda+tandaD+Drj+"° " +tandaM+Mnt+"' " +tandaS+Dtk+"''";
+}
+
+function Dms2(Data2){
+var Data=Math.abs(Data2);
+const deg=Math.floor(Data);
+const min=Math.floor((Data-deg)*60);
+const sec=((Data-deg-min/60)*3600).toFixed(2);
+
+//menghindari tampil 60 detik
+var Dtk,Mnt,Drj;
+if (sec<60){Dtk=sec;Mnt=min}
+else{Dtk=0;Mnt=min+1}
+if (Mnt<60){Mnt=Mnt;Drj=deg}
+else{Mnt=0;Drj=deg+1}
+
+var tanda,tandaD,tandaM,tandaS;
+if (Data2<0){tanda="-"}
+else{tanda="+"}
+if (Drj<10){tandaD="0"}
+else{tandaD=""}
+if (Mnt<10){tandaM="0"}
+else{tandaM=""}
+if (Dtk<10){tandaS="0"}
+else{tandaS=""}
+return tanda+tandaD+Drj+"° " +tandaM+Mnt+"' " +tandaS+Dtk+"''";
+}
+
+function Dms3(Data2){
+var Data=Math.abs(Data2);
+const deg=Math.floor(Data);
+const min=Math.floor((Data-deg)*60);
+const sec=((Data-deg-min/60)*3600).toFixed(2);
+
+//menghindari tampil 60 detik
+var Dtk,Mnt,Drj;
+if (sec<60){Dtk=sec;Mnt=min}
+else{Dtk=0;Mnt=min+1}
+if (Mnt<60){Mnt=Mnt;Drj=deg}
+else{Mnt=0;Drj=deg+1}
+
+var tanda,tandaD,tandaM,tandaS;
+if (Data2<0){tanda="-"}
+else{tanda="+"}
+
+if (Drj<10&&Drj<10){tandaD="00"}
+else if (Drj>9&&Drj<100){tandaD="0"}
+else{tandaD=""}
+if (Mnt<10){tandaM="0"}
+else{tandaM=""}
+if (Dtk<10){tandaS="0"}
+else{tandaS=""}
+return tanda+tandaD+Drj+"° " +tandaM+Mnt+"' " +tandaS+Dtk+"''";
+}
+
+function Hms(Data2){
+var Data=Math.abs(Data2);
+const deg=Math.floor(Data);
+const min=Math.floor((Data-deg)*60);
+const sec=((Data-deg-min/60)*3600).toFixed(2);
+
+//menghindari tampil 60 detik
+var Dtk,Mnt,Drj;
+if (sec<60){Dtk=sec;Mnt=min}
+else{Dtk=0;Mnt=min+1}
+if (Mnt<60){Mnt=Mnt;Drj=deg}
+else{Mnt=0;Drj=deg+1}
+
+var tanda,tandaD,tandaM,tandaS;
+if (Data2<0){tanda="-"}
+else{tanda=" "}
+if (Drj<10){tandaD="0"}
+else{tandaD=""}
+if (Mnt<10){tandaM="0"}
+else{tandaM=""}
+if (Dtk<10){tandaS="0"}
+else{tandaS=""}
+return tanda+tandaD+Drj+":" +tandaM+Mnt+":" +tandaS+Dtk;
+}
+
+function HmsB(Data2){
+var Data=Math.abs(Data2);
+const deg=Math.floor(Data);
+const min=Math.floor((Data-deg)*60);
+const sec=((Data-deg-min/60)*3600).toFixed(2);
+
+//menghindari tampil 60 detik
+var Dtk,Mnt,Drj;
+if (sec<60){Dtk=sec;Mnt=min}
+else{Dtk=0;Mnt=min+1}
+if (Mnt<60){Mnt=Mnt;Drj=deg}
+else{Mnt=0;Drj=deg+1}
+
+var tanda,tandaD,tandaM,tandaS;
+if (Data2<0){tanda="-"}
+else{tanda=" "}
+if (Drj<10){tandaD="0"}
+else{tandaD=""}
+if (Mnt<10){tandaM="0"}
+else{tandaM=""}
+if (Dtk<10){tandaS="0"}
+else{tandaS=""}
+return tanda+tandaD+Drj+":" +tandaM+Mnt;
+}
+
+function AskRound0( Data){		
+        var hsl;			
+		var A, B, C, D, E, F;	
+		A=Math.floor( Data);	
+		B=(Data-A) *1;	
+		C=Math.floor( B);	
+		D=B-C;	
+		if (D>0.5) {E=1;}	
+		else {E=0;}	
+		F=A+(C+E) /1;	
+        hsl=F;			
+        return hsl;			
+    }	
+	
+function JdtoTgl(Data){
+var JdIjtima,A, AA, B,C,D,E,Tgl,M, Y,Z,F;
+var PA,Hari,Ps,BulanM,NamaBulanM,BlnM;
+var NamaHari,HariJ,NamaPasaran,PasaranJ;	
+	JdIjtima=Data;					
+	Z = Math.floor((Math.floor(JdIjtima)));
+	F = JdIjtima - Z;				
+        if (Z<2299161){A=Z;}				
+        else { AA = Math.floor((Z-1867216.25)/36524.25);A =Math.floor(Z + 1 + AA - Math.floor(AA/4))};	
+        B = Math.floor(A+1524);				
+        C = Math.floor((Math.floor((B-122.1)/365.25)));				
+        D = Math.floor((Math.floor(365.25*C)));				
+        E = Math.floor((Math.floor((B-D)/30.6001)));				
+        Tgl = Math.floor((B-D-Math.floor(30.6001*E)+F));				
+        if (E>13){M=E-13;}				
+        else {M = E - 1;};				
+        if (M<3){Y = C - 4715;}				
+        else {Y = C - 4716;};
+
+	PA=Z+3;
+	Hari=PA-(Math.floor(PA/7)*7);
+	Ps=(PA-2)-(Math.floor((PA-2)/5)*5);
+BulanM = ["","Januari","Februari","Maret","April","Mei","Juni","Juli","Agustus","September","Oktober","November","Desember"];
+NamaHari = ["Jum'at","Sabtu","Ahad","Senin","Selasa","Rabu","Kamis","Jum'at"];
+HariJ=NamaHari[Hari];
+NamaPasaran = ["Kliwon","Legi","Pahing","Pon","Wage","Kliwon"];
+PasaranJ=NamaPasaran[Ps];
+return HariJ+" "+PasaraJ+","+Tgl+" "+BulanM[M]+" "+Y+" M";			
+  }
+</script>
+  
+    </html>
